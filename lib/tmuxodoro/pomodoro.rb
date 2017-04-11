@@ -3,7 +3,7 @@ class Pomodoro
 
   attr_reader :tomatos, :tomato_time, :rest_time, :stop_at
 
-  def initialize(tomatos:, tomato_time:, rest_time:)
+  def initialize(tomatos: nil, tomato_time: nil, rest_time: nil)
     @tomatos = (tomatos || 8).to_i
     @tomato_time = (tomato_time || 55 * MINUTE).to_i
     @rest_time = (rest_time || 5 * MINUTE).to_i
