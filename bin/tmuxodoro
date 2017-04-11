@@ -1,15 +1,18 @@
 #!/usr/bin/env ruby
 
+MINUTE = 60
+
 require 'tmuxodoro'
 
-tomato_time = ENV['TOMATO_TIME']
-tomatos = ENV['TOMATOS']
-rest_time = ENV['REST_TIME']
+tomato_time = ENV['TOMATO_TIME'] ? ENV['TOMATO_TIME'].to_i * MINUTE : nil
+rest_time = ENV['REST_TIME'] ? ENV['REST_TIME'].to_i * MINUTE : nil
+tomatoes = ENV['TOMATOES'] ? ENV['TOMATOES'].to_i : nil
+
 port = ENV['PORT'] || 3080
 
 Tmuxodoro.run(
   port,
-  tomatos: tomatos,
+  tomatoes: tomatoes,
   rest_time: rest_time,
   tomato_time: tomato_time
 )
