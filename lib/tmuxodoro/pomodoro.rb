@@ -3,10 +3,10 @@ class Pomodoro
 
   attr_reader :tomatos, :tomato_time, :rest_time, :stop_at
 
-  def initialize(tomatos: 8, tomato_time: 55 * MINUTE, rest_time: 5 * MINUTE)
-    @tomatos = tomatos
-    @tomato_time = tomato_time
-    @rest_time = rest_time
+  def initialize(tomatos:, tomato_time:, rest_time:)
+    @tomatos = (tomatos || 8).to_i
+    @tomato_time = (tomato_time || 55 * MINUTE).to_i
+    @rest_time = (rest_time || 5 * MINUTE).to_i
   end
 
   def status
@@ -17,7 +17,7 @@ class Pomodoro
         "rest: #{remaining_rest_time} min\n"
       end
     else
-      "🍅 #{tomatos}\n"
+      "🍅  #{tomatos}\n"
     end
   end
 

@@ -58,7 +58,7 @@ describe Pomodoro do
     context 'not active' do
       let(:passed_time) { tomato_time + rest_time }
       let(:new_time) { Time.now + passed_time }
-      it { should eq "🍅 #{tomatos - 1}\n" }
+      it { should eq "🍅  #{tomatos - 1}\n" }
     end
   end
 end
