@@ -5,7 +5,7 @@ class Pomodoro
 
   def initialize(tomatoes: nil, tomato_time: nil, rest_time: nil)
     @tomatoes = tomatoes || 8
-    @tomato_time = tomato_time || 55 * MINUTE
+    @tomato_time = tomato_time || 25 * MINUTE
     @rest_time = rest_time || 5 * MINUTE
   end
 
