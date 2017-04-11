@@ -3,13 +3,13 @@ require "spec_helper"
 MINUTE = 60
 
 describe Pomodoro do
-  let(:tomatos) { 8 }
+  let(:tomatoes) { 8 }
   let(:tomato_time) { 55 * MINUTE }
   let(:rest_time) { 5 * MINUTE }
 
   let(:pomodoro) do
     described_class.new(
-      tomatos: tomatos,
+      tomatoes: tomatoes,
       tomato_time: tomato_time,
       rest_time: rest_time
     )
@@ -25,9 +25,9 @@ describe Pomodoro do
   end
 
   describe '#start' do
-    context 'reduces tomatos count by 1' do
-      subject { pomodoro.tomatos }
-      it { should eq(tomatos - 1) }
+    context 'reduces tomatoes count by 1' do
+      subject { pomodoro.tomatoes }
+      it { should eq(tomatoes - 1) }
     end
 
     context 'set stop_at' do
@@ -58,7 +58,7 @@ describe Pomodoro do
     context 'not active' do
       let(:passed_time) { tomato_time + rest_time }
       let(:new_time) { Time.now + passed_time }
-      it { should eq "🍅  #{tomatos - 1}\n" }
+      it { should eq "🍅  #{tomatoes - 1}\n" }
     end
   end
 end
