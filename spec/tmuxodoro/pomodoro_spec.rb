@@ -34,6 +34,15 @@ describe Pomodoro do
       subject { pomodoro.stop_at }
       it { should eq Time.now + tomato_time }
     end
+
+    context 'reset tomatoes when 0 tomatoes remain' do
+      subject { pomodoro.tomatoes }
+      before :each do
+        pomodoro.instance_variable_set(:@tomatoes, 0)
+        pomodoro.start
+      end
+      it { should eq(tomatoes - 1) }
+    end
   end
 
   describe '#status' do
@@ -59,6 +68,13 @@ describe Pomodoro do
       let(:passed_time) { tomato_time + rest_time }
       let(:new_time) { Time.now + passed_time }
       it { should eq "🍅  #{tomatoes - 1}\n" }
+    end
+
+    context '0 tomatoes remain' do
+      let(:passed_time) { tomato_time + rest_time }
+      let(:new_time) { Time.now + passed_time }
+      let(:tomatoes) { 1 }
+      it { should eq "work is done\n" }
     end
   end
 end

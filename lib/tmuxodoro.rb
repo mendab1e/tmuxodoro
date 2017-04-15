@@ -22,7 +22,7 @@ module Tmuxodoro
       server.mount_proc('/restart') do |req, resp|
         pomodoro = Pomodoro.new(args)
         resp['Content-Type'] = 'text/plain'
-        resp.body = "Tomatos have been reset\n"
+        resp.body = "Tomatoes have been reset\n"
       end
 
       server.start

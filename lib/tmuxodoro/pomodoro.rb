@@ -1,10 +1,10 @@
 class Pomodoro
   MINUTE = 60
 
-  attr_reader :tomatoes, :tomato_time, :rest_time, :stop_at
+  attr_reader :tomatoes, :tomato_time, :rest_time, :stop_at, :initial_tomatoes
 
   def initialize(tomatoes: nil, tomato_time: nil, rest_time: nil)
-    @tomatoes = tomatoes || 8
+    @tomatoes = @initial_tomatoes = tomatoes || 8
     @tomato_time = tomato_time || 25 * MINUTE
     @rest_time = rest_time || 5 * MINUTE
   end
@@ -17,11 +17,12 @@ class Pomodoro
         "rest: #{remaining_rest_time} min\n"
       end
     else
-      "🍅  #{tomatoes}\n"
+      remain_tomatoes_status
     end
   end
 
   def start
+    @tomatoes = initial_tomatoes if tomatoes == 0
     @tomatoes -= 1
     @stop_at = Time.now + tomato_time
   end
@@ -44,5 +45,9 @@ class Pomodoro
   def remaining_rest_time
     return unless stop_at
     ((stop_at + rest_time - Time.now) / MINUTE).ceil
+  end
+
+  def remain_tomatoes_status
+    tomatoes > 0 ? "🍅  #{tomatoes}\n" : "work is done\n"
   end
 end
